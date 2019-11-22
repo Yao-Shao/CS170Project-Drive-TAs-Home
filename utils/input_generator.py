@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 from student_utils import *
 
 #################################################################
-task = 0 # 0 for visualization, 1 for generate.
+task = 1 # 0 for visualization, 1 for generate.
 SIZE = 200
 upper_bound = 200 # maximal weight
 diff_weight = True # diffrent weight for edges. if false, weight is 1.0 for all edges

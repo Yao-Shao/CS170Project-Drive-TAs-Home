@@ -35,7 +35,6 @@ def validate_all_outputs(input_directory, output_directory, params=[]):
         print(input_file, output_file)
         if output_file not in output_files:
             print(f'No corresponding .out file for {input_file}')
-            print(output_files)
             results = (None, None, f'No corresponding .out file for {input_file}')
         else:
             results = validate_output(input_file, output_file, params=params)
@@ -66,7 +65,7 @@ def tests(input_data, output_data, params=[]):
             message += 'At least one dropoff location is not an actual location.\n'
             cost = 'infinite'
         if dropoff[0] not in car_cycle:
-            message += 'Dropoff location ' + dropoff[0] + ' is not in the path of the car.\n'
+            message += 'At least one dropoff location is not in the path of the car.\n'
             cost = 'infinite'
         dropoff_index = list_of_locations.index(dropoff[0])
         if list_of_locations.index(dropoff[0]) in dropoffs.keys():
