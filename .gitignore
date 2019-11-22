@@ -117,8 +117,10 @@ DEBUG/
 
 RELEASE/
 
-# Build results
- 
+DTH/
+
+# Build results 
+
 [Dd]ebug/
 [Rr]elease/
 x64/
