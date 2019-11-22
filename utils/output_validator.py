@@ -66,7 +66,7 @@ def tests(input_data, output_data, params=[]):
             message += 'At least one dropoff location is not an actual location.\n'
             cost = 'infinite'
         if dropoff[0] not in car_cycle:
-            message += 'At least one dropoff location is not in the path of the car.\n'
+            message += 'Dropoff location ' + dropoff[0] + ' is not in the path of the car.\n'
             cost = 'infinite'
         dropoff_index = list_of_locations.index(dropoff[0])
         if list_of_locations.index(dropoff[0]) in dropoffs.keys():
