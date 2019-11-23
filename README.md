@@ -13,7 +13,7 @@
    ```
    cd <path to the utils folder>
    pip3 install requirments.txt
-   python output_validator.py --all ../inputs ../outputs
+   python3 output_validator.py --all ../inputs ../outputs
    ```
 
    
