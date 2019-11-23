@@ -173,34 +173,6 @@ void to_name(vector<int> full_v) {
 	cout<<endl;
 }
 
-void show_drop_off(int drop_off[]) {
-	bool used[maxl];
-	int drop_off_cnt = 0;
-	vector<int> TAs[maxl];
-	
-	memset(used,0,sizeof(used));
-	
-	for(int i=1;i<=L;i++) 
-	if(belong_to[i]>0) {
-		if(!used[drop_off[i]])
-		{
-//			printf("ttt %d\n",drop_off[i]);
-			used[drop_off[i]]=true;
-			drop_off_cnt ++;
-		}	
-		TAs[drop_off[i]].push_back(i); 
-	}
-	
-	cout<<drop_off_cnt<<endl;
-	for(int i=1;i<=L;i++)
-		if(used[i]==true) {
-			cout<<locations[i];
-			for(size_t j=0;j<TAs[i].size();j++) {
-				cout<<" "<<locations[TAs[i][j]];
-			}
-			cout<<endl;
-		}
-}
 
 void save_output(const char* file_path, vector<int> full_v, int drop_off[]) {
 	cout << "save output..." << endl;
@@ -243,11 +215,41 @@ void save_output(const char* file_path, vector<int> full_v, int drop_off[]) {
 	cout << "save finished..." << endl;
 }
 
+void show_drop_off(int drop_off[]) {
+	bool used[maxl];
+	int drop_off_cnt = 0;
+	vector<int> TAs[maxl];
+	
+	memset(used,0,sizeof(used));
+	
+	for(int i=1;i<=L;i++) 
+	if(belong_to[i]>0) {
+		if(!used[drop_off[i]])
+		{
+//			printf("ttt %d\n",drop_off[i]);
+			used[drop_off[i]]=true;
+			drop_off_cnt ++;
+		}	
+		TAs[drop_off[i]].push_back(i); 
+	}
+	
+	cout<<drop_off_cnt<<endl;
+	for(int i=1;i<=L;i++)
+		if(used[i]==true) {
+			cout<<locations[i];
+			for(size_t j=0;j<TAs[i].size();j++) {
+				cout<<" "<<locations[TAs[i][j]];
+			}
+			cout<<endl;
+		}
+}
+
+
 int main() {
 	// ³õÊ¼»¯
-	string SIZE = "200";
-	string input_path = "../../input/" + SIZE + ".in";
-	string output_path = "../../output/" + SIZE + ".out";
+	string SIZE = "50";
+	string input_path = "../../inputs/" + SIZE + ".in";
+	string output_path = "../../outputs/" + SIZE + ".out";
 	freopen(input_path.c_str(), "r", stdin);
 	srand(time(0));
 	
@@ -445,6 +447,21 @@ int main() {
 		}
 	}
 	to_name(my_ans);
+
+	for(int i=1;i<=H;i++) {
+		if(belong_to[i]>0) {
+			int drop_temp = -1;
+			double best_drop = 0.0;
+//			drop_off_location[i];
+			for(size_t j=0;j<my_ans.size();j++) {
+				if(drop_temp==-1 || adj[i][my_ans[j]]<best_drop) {
+					drop_temp = my_ans[j];
+					best_drop = adj[i][my_ans[j]];
+				}
+			}
+		}
+	}
+
 	show_drop_off(drop_off_location);
 	save_output(output_path.c_str(), my_ans, drop_off_location);
 	#ifdef _DEBUG_LENGTH_PRINT 	

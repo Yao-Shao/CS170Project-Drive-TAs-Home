@@ -5,15 +5,18 @@ import random
 import string
 import time
 import math
-import utils
 
 import matplotlib.pyplot as plt
+
+import utils
 from student_utils import *
 
-#################################################################
+#######################   Config   ##############################
 task = 1 # 0 for visualization, 1 for generate.
-SIZE = 200
-upper_bound = 100000000 # maximal weight
+input_directory = r"../inputs"
+output_directory = r"../outputs"
+SIZE = 200 # number of loctions
+upper_bound = 100000000 # = 1/sprt(2) * maximal weight
 diff_weight = True # diffrent weight for edges. if false, weight is 1.0 for all edges
 #################################################################
 
@@ -114,8 +117,6 @@ def parse_mat(mat):
 
 
 if __name__=="__main__":
-    input_directory = r"../inputs"
-    output_directory = r"../outputs"
 
     if task == 0:
         file = 'sample.in'
