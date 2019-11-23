@@ -6,8 +6,8 @@ import utils
 from student_utils import *
 
 size = [50,100,200]
-input_directory = [r"../input/" + str(i) + ".in" for i in size]
-output_directory = [r"../output/" + str(i) + ".out" for i in size]
+input_directory = [r"../inputs/" + str(i) + ".in" for i in size]
+output_directory = [r"../outputs/" + str(i) + ".out" for i in size]
 
 if __name__ == '__main__':
     for i,f_in in enumerate(input_directory):

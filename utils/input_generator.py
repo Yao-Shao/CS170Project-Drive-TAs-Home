@@ -2,6 +2,7 @@ import sys
 sys.path.append('..')
 sys.path.append('../..')
 import random
+import string
 import time
 import math
 import utils
@@ -12,7 +13,7 @@ from student_utils import *
 #################################################################
 task = 1 # 0 for visualization, 1 for generate.
 SIZE = 200
-upper_bound = 200 # maximal weight
+upper_bound = 100000000 # maximal weight
 diff_weight = True # diffrent weight for edges. if false, weight is 1.0 for all edges
 #################################################################
 
@@ -46,7 +47,7 @@ def draw(G, name=''):
     nx.draw(G, with_labels=True, font_weight='bold')
     fig = plt.gcf()
     plt.show()
-    fig.savefig('../input/' + name)
+    fig.savefig('../inputs/' + name)
 
 
 def assign_weight(G, size):
@@ -58,7 +59,7 @@ def assign_weight(G, size):
 
 def sample_points(size):
     random.seed(time.time())
-    points = [(random.random()*size, random.random()*size) for i in range(size)]
+    points = [(random.random()*upper_bound, random.random()*upper_bound) for i in range(size)]
     return points
 
 
@@ -69,12 +70,19 @@ def euler_dist(p1, p2):
 def save_graph(G, size, input_dictionary):
     num_loc = size
     num_home = size//2
-    loc_name = [str(i) for i in range(num_loc)]
-    home_name = [str(i) for i in range(num_loc)]
-    random.shuffle(loc_name)
-    random.shuffle(home_name)
-    home_name = home_name[:num_home]
-    start_loc = str(random.randint(0,size-1))
+    # generate loc names
+    name_set = set()
+    while len(name_set) < num_loc:
+        name_set.add(''.join([random.choice(string.ascii_letters + string.digits) for i in range(20)]))
+    name_list = list(name_set)
+    loc_list = [i for i in range(num_loc)]
+    home_list = [i for i in range(num_loc)]
+    random.shuffle(loc_list)
+    random.shuffle(home_list)
+    home_list = home_list[:num_home]
+    loc_name = [name_list[i] for i in loc_list]
+    home_name = [name_list[i] for i in home_list]
+    start_loc = loc_name[random.randint(0,num_loc-1)]
 
     data = ''
     data += str(num_loc) + '\n'
@@ -106,8 +114,8 @@ def parse_mat(mat):
 
 
 if __name__=="__main__":
-    input_directory = r"../input"
-    output_directory = r"../output"
+    input_directory = r"../inputs"
+    output_directory = r"../outputs"
 
     if task == 0:
         file = 'sample.in'
