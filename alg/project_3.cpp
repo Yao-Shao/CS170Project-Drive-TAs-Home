@@ -1,3 +1,5 @@
+#pragma warning(disable : 4996)
+
 #include<cstdio>
 #include<algorithm>
 #include<string>
@@ -7,10 +9,13 @@
 #include<vector>
 #include<ctime>
 
+#include <filesystem>
+namespace fs = std::filesystem;
+
 // remember to comment
 //#define _DEBUG
 //#define _DEBUG_LENGTH_PRINT
-
+#undef _DEBUG
 using namespace std;
 
 int L, H;
@@ -56,8 +61,9 @@ double get_length(vector<int> v) {
 //		if(temp_bool)
 //			cout<<"tt "<<res<<endl;
 	}
-	
-	res+=adj[v[v.size()-1]][v[0]];
+	if (v.size() > 0) {
+		res += adj[v[v.size() - 1]][v[0]];
+	}
 	return res;
 }
 
@@ -198,10 +204,10 @@ void show_drop_off(int drop_off[]) {
 		}
 }
 
-int main() {
+void solve_one_file(string input_path, string output_path) {
 	// 初始化 
-	freopen("50.in","r",stdin);
-	freopen("50.out","w",stdout);
+	FILE* in_file = freopen(input_path.c_str(),"r",stdin);
+	FILE* out_file = freopen(output_path.c_str(),"w",stdout);
 	srand(time(0));
 	
 	// 读入 
@@ -417,13 +423,54 @@ int main() {
 	}
 	
 	show_drop_off(drop_off_location);
+
+	fclose(in_file);
+	fclose(out_file);
+
 	#ifdef _DEBUG_LENGTH_PRINT 	
 		cout<<"2:"<<get_length(my_ans)<<endl;
-	#endif
-	
-	
-	return 0;	
+	#endif	
+
 }
+
+
+void initialize() {
+	circle.clear();
+	my_ans.clear();
+	res = 0;
+	start_point.clear();
+	temp.clear();
+	for (size_t i = 0; i < maxl; i++) {
+		locations[i].clear();
+		homes[i].clear();
+		index[i] = 0;
+		belong_to[i] = 0;
+		drop_off_location[i] = 0;
+		for (size_t j = 0; j < maxl; j++) {
+			adj[i][j] = 0;
+			mid[i][j] = 0;
+			path[i][j].clear();
+		}
+	}
+}
+
+int main() {
+	std::string path = "../../inputs";
+	size_t cnt = 1;
+	for (const auto& entry : fs::directory_iterator(path)) {
+		initialize();
+		string input_path = entry.path().string();
+		string output_path = input_path;
+		size_t index = output_path.find("inputs", 0);
+		output_path.replace(index, 6, "outputs");
+		index = output_path.find("in", 0);
+		output_path.replace(index, 3, "out");
+		solve_one_file(input_path, output_path);
+	}
+	return 0;
+}
+
+
 
 /*
 7
