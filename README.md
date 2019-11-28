@@ -16,8 +16,6 @@
    python3 output_validator.py --all <path to input folder> <path to output folder>
    ```
 
-
-
 ## how to compress output
 
 in terminal
