@@ -1,20 +1,20 @@
-stop0 stop159 stop8 stop40 stop199 stop4 stop69 stop3 stop130 stop0 stop72 stop9 stop2 stop58 stop102 stop0 stop109 stop145 stop55 stop4 stop180 stop84 stop90 stop142 stop191 stop33 stop3 stop62 stop25 stop2 stop153 stop44 stop4 stop163 stop21 stop60 stop2 stop124 stop73 stop126 stop17 stop22 stop39 stop15 stop89 stop35 stop13 stop92 stop2 stop81 stop7 stop68 stop112 stop144 stop0 stop2 stop74 stop38 stop138 stop139 stop3 stop166 stop4 stop101 stop0 stop3 stop182 stop34 stop123 stop5 stop197 stop0 stop135 stop106 stop4 stop1 stop150 stop147 stop41 stop183 stop122 stop77 stop133 stop0 stop96 stop31 stop171 stop64 stop88 stop156 stop172 stop194 stop16 stop167 stop158 stop65 stop186 stop80 stop70 stop105 stop162 stop100 stop1 stop42 stop137 stop0 stop155 stop189 stop18 stop195 stop181 stop2 stop114 stop148 stop128 stop176 stop187 stop14 stop0
-96
-stop0 stop0 stop23 stop51
+stop0 stop41 stop17 stop4 stop144 stop0 stop199 stop192 stop58 stop114 stop92 stop1 stop189 stop22 stop0 stop135 stop122 stop181 stop15 stop34 stop38 stop162 stop25 stop142 stop7 stop138 stop191 stop33 stop23 stop31 stop197 stop139 stop105 stop0 stop159 stop42 stop0 stop40 stop77 stop81 stop13 stop124 stop182 stop88 stop158 stop0 stop14 stop2 stop62 stop109 stop70 stop102 stop2 stop60 stop112 stop101 stop130 stop51 stop16 stop54 stop8 stop123 stop35 stop128 stop21 stop176 stop167 stop163 stop0 stop133 stop195 stop44 stop65 stop64 stop106 stop126 stop145 stop186 stop2 stop73 stop0 stop3 stop153 stop172 stop39 stop147 stop1 stop80 stop137 stop89 stop84 stop180 stop96 stop1 stop74 stop148 stop69 stop68 stop166 stop55 stop194 stop4 stop150 stop183 stop187 stop18 stop90 stop156 stop100 stop0 stop155 stop0
+97
+stop0 stop0 stop72
 stop2 stop2
 stop3 stop3
 stop4 stop4
 stop7 stop7
-stop8 stop54 stop8
-stop9 stop9
+stop8 stop8
 stop13 stop13
 stop14 stop14
 stop15 stop15
 stop16 stop16
-stop17 stop17
+stop17 stop17 stop171
 stop18 stop18
 stop21 stop21
 stop22 stop22
+stop23 stop23
 stop25 stop25
 stop31 stop31
 stop33 stop33
@@ -23,9 +23,11 @@ stop35 stop35
 stop38 stop38
 stop39 stop39
 stop40 stop40
-stop41 stop41
+stop41 stop41 stop9
 stop42 stop42
 stop44 stop44
+stop51 stop51
+stop54 stop54
 stop55 stop55
 stop58 stop58
 stop60 stop60
@@ -35,7 +37,6 @@ stop65 stop65
 stop68 stop68
 stop69 stop69
 stop70 stop70
-stop72 stop72
 stop73 stop73
 stop74 stop74
 stop77 stop77
@@ -68,7 +69,7 @@ stop144 stop144
 stop180 stop180
 stop147 stop147
 stop148 stop148
-stop159 stop159 stop192
+stop159 stop159
 stop139 stop139
 stop197 stop197
 stop156 stop156
@@ -81,7 +82,6 @@ stop158 stop158
 stop172 stop172
 stop189 stop189
 stop150 stop150
-stop171 stop171
 stop183 stop183
 stop166 stop166
 stop191 stop191
@@ -96,3 +96,4 @@ stop162 stop162
 stop167 stop167
 stop145 stop145
 stop181 stop181
+stop192 stop192

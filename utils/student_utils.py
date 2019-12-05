@@ -76,7 +76,7 @@ def cost_of_solution(G, car_cycle, dropoff_mapping):
     message = ''
     dropoffs = dropoff_mapping.keys()
     if not is_valid_walk(G, car_cycle):
-        message += 'This is not a valid walk for the given graph.\n'
+        message += 'This is not a valid cycle for the car in the given graph.\n'
         cost = 'infinite'
 
     if not car_cycle[0] == car_cycle[-1]:

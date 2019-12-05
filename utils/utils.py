@@ -5,6 +5,7 @@ def get_files_with_extension(directory, extension):
     for name in os.listdir(directory):
         if name.endswith(extension):
             files.append(f'{directory}/{name}')
+    files.sort()
     return files
 
 

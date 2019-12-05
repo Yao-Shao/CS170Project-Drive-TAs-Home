@@ -1,8 +1,6 @@
-x42 x33 x7 x2 x3 x1 x55 x40 x41 x43 x61 x67 x64 x0 x35 x17 x60 x48 x37 x58 x57 x52 x46 x15 x24 x69 x28 x5 x2 x36 x20 x4 x18 x0 x62 x51 x59 x2 x68 x9 x42
-34
-x0 x38
-x2 x2 x29
-x3 x3
+x42 x60 x61 x2 x33 x19 x20 x57 x6 x38 x24 x5 x58 x52 x7 x2 x46 x37 x48 x36 x29 x40 x15 x9 x18 x2 x62 x41 x17 x35 x2 x68 x55 x28 x69 x64 x67 x59 x51 x42
+33
+x2 x2 x3
 x5 x5
 x7 x7
 x9 x9
@@ -12,13 +10,14 @@ x18 x18
 x20 x20
 x24 x24
 x28 x28
+x29 x29
 x33 x33
 x35 x35
 x36 x36
 x37 x37
+x38 x38
 x40 x40
 x41 x41
-x43 x43
 x46 x46
 x48 x48
 x51 x51
@@ -28,7 +27,7 @@ x57 x57
 x58 x58
 x59 x59
 x60 x60
-x61 x61
+x61 x61 x43
 x62 x62
 x64 x64
 x67 x67

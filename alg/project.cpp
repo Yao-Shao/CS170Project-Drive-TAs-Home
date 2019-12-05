@@ -1,5 +1,3 @@
-#pragma warning(disable : 4996)
-
 #include<cstdio>
 #include<algorithm>
 #include<string>
@@ -9,13 +7,10 @@
 #include<vector>
 #include<ctime>
 
-#include <filesystem>
-namespace fs = std::filesystem;
-
 // remember to comment
 //#define _DEBUG
 //#define _DEBUG_LENGTH_PRINT
-#undef _DEBUG
+
 using namespace std;
 
 int L, H;
@@ -29,6 +24,8 @@ string start_point;
 string temp;
 
 double adj[maxl][maxl];
+int testAdj[maxl][maxl];
+
 double mid[maxl][maxl];
 vector<int> path[maxl][maxl];
 
@@ -36,6 +33,7 @@ int belong_to[maxl];
 
 vector<int> circle;
 vector<int> my_ans;
+vector<int> my_ans_temp;
 double res;
 
 int drop_off_location[maxl]; 
@@ -61,21 +59,30 @@ double get_length(vector<int> v) {
 //		if(temp_bool)
 //			cout<<"tt "<<res<<endl;
 	}
-	if (v.size() > 0) {
-		res += adj[v[v.size() - 1]][v[0]];
-	}
+	
+	res+=adj[v[v.size()-1]][v[0]];
 	return res;
 }
 
 void first_generate() {
 	circle.clear();
 	for(int i=0;i<=H;i++)
-		circle.push_back(index[i]);
+	{ 
+		bool flag = true;
+		for(size_t j=0;j<circle.size();j++)
+			if(circle[j]==index[i]) {
+				flag = false;
+				break;
+			}
+		if(flag==true) 
+			circle.push_back(index[i]);
+	} 
+	
 //	res=get_length(circle);
 //	my_ans = circle;
-	for(int iter=0;iter<10000;iter++) {
-		for(int i=0;i<=H;i++) {
-			int j = rand()%(H+1);
+	for(int iter=0;iter<2000;iter++) {
+		for(size_t i=0;i<circle.size();i++) {
+			int j = rand()%(circle.size());
 			swap(circle[i],circle[j]);	
 		}
 		double new_res=get_length(circle);
@@ -96,8 +103,8 @@ void solve() {
 	int iter_times = max_iter;
 	while(iter_times--) {
 		circle = my_ans;
-		int k1=rand()%(H+1);
-		int k2=rand()%(H+1);
+		int k1=rand()%(circle.size());
+		int k2=rand()%(circle.size());
 		if(k1==k2) 
 			continue;
 		swap(circle[k1],circle[k2]);
@@ -129,11 +136,12 @@ vector<int> to_full(vector<int> v) {
 	vector<int> ret;
 	ret.clear();
 	
+	ret.push_back(v[start_index]);
 	for(size_t i=start_index+1;i<v.size();i++) {
 		for(size_t j=0;j<path[v[i-1]][v[i]].size();j++) {
 			if(j==0) {
-				if(ret.empty()) 
-					ret.push_back(path[v[i-1]][v[i]][0]);
+//				if(ret.empty()) 
+//					ret.push_back(path[v[i-1]][v[i]][0]);
 			}
 			else {
 				ret.push_back(path[v[i-1]][v[i]][j]);	
@@ -143,8 +151,8 @@ vector<int> to_full(vector<int> v) {
 	
 	for(size_t j=0;j<path[v[v.size()-1]][v[0]].size();j++) {
 		if(j==0) {
-			if(ret.empty()) 
-				ret.push_back(path[v[v.size()-1]][v[0]][0]);
+//			if(ret.empty()) 
+//				ret.push_back(path[v[v.size()-1]][v[0]][0]);
 		}
 		else {
 			ret.push_back(path[v[v.size()-1]][v[0]][j]);	
@@ -154,14 +162,22 @@ vector<int> to_full(vector<int> v) {
 	for(int i=1;i<=start_index;i++) {
 		for(size_t j=0;j<path[v[i-1]][v[i]].size();j++) {
 			if(j==0) {
-				if(ret.empty()) 
-					ret.push_back(path[v[i-1]][v[i]][0]);
+//				if(ret.empty()) 
+//					ret.push_back(path[v[i-1]][v[i]][0]);
 			}
 			else {
 				ret.push_back(path[v[i-1]][v[i]][j]);	
 			}
 		}
 	}
+	
+	if(ret.size()!=1)
+	{
+		if(ret[ret.size()-1]==ret[0])
+		{
+			ret.pop_back();	
+		}
+	}	
 	
 	return ret;
 }
@@ -172,6 +188,7 @@ void to_name(vector<int> full_v) {
 	for(size_t i=1;i<full_v.size();i++) {
 		cout<<" "<<locations[full_v[i]];	
 	}
+	cout<<" "<<locations[full_v[0]];
 	cout<<endl;
 }
 
@@ -182,15 +199,12 @@ void show_drop_off(int drop_off[]) {
 	
 	memset(used,0,sizeof(used));
 	
-	for(int i=1;i<=L;i++) 
-	if(belong_to[i]>0) {
-		if(!used[drop_off[i]])
-		{
-//			printf("ttt %d\n",drop_off[i]);
+	for(int i=1;i<=H;i++) {
+		if(!used[drop_off[i]]) {
 			used[drop_off[i]]=true;
-			drop_off_cnt ++;
+			drop_off_cnt++;
 		}	
-		TAs[drop_off[i]].push_back(i); 
+		TAs[drop_off[i]].push_back(index[i]); 
 	}
 	
 	cout<<drop_off_cnt<<endl;
@@ -204,13 +218,46 @@ void show_drop_off(int drop_off[]) {
 		}
 }
 
-void solve_one_file(string input_path, string output_path) {
-	// åˆå§‹åŒ– 
-	FILE* in_file = freopen(input_path.c_str(),"r",stdin);
-	FILE* out_file = freopen(output_path.c_str(),"w",stdout);
+void verify(vector<int> v) 
+{
+	cout<<"verify"<<endl;
+	for(size_t i=0;i<v.size();i++)
+		cout<<v[i]<<" ";
+	cout<<"verify completed"<<endl;
+	
+	for(int i=1;i<v.size();i++) 
+	{
+		if(testAdj[v[i-1]][v[i]]==0) 
+		{
+			cout<<i-1<<" "<<i<<endl;
+			cout<<"ERROR"<<v[i-1]<<" "<<v[i]<<endl;
+			exit(1);	
+		}
+	}
+	if(testAdj[v[v.size()-1]][v[0]]==0) 
+	{
+		cout<<v.size()-1<<" "<<0<<endl;
+		cout<<"ERROR"<<v[v.size()-1]<<" "<<v[0]<<endl;
+		exit(1);	
+	}
+}
+
+int main(int argc , char *argv[]) {
+//	cout<<argc<<endl;
+	if(argc>=3) {
+//		cout<<argv[1]<<endl;
+//		cout<<argv[2]<<endl;
+	}
+	else {
+		return 0;
+//		freopen("input1/1_50.in","r",stdin);
+	}
+	// ³õÊ¼»¯ 
+	freopen(argv[1],"r",stdin);
+	freopen(argv[2],"w",stdout);
 	srand(time(0));
 	
-	// è¯»å…¥ 
+	// ¶ÁÈë 
 	cin>>L;
 	cin>>H;
 	for(int i=1;i<=L;i++) {
@@ -218,7 +265,7 @@ void solve_one_file(string input_path, string output_path) {
 		belong_to[i] = -1;
 	}
 	
-	// ä¿ç•™homeçš„ä¸‹æ ‡ 
+	// ±£ÁôhomeµÄÏÂ±ê 
 	for(int i=1;i<=H;i++) {
 		cin>>homes[i];	
 		for(int j=1;j<=L;j++) {
@@ -230,7 +277,7 @@ void solve_one_file(string input_path, string output_path) {
 		}
 	}
 		 
-	// ä¿ç•™åˆå§‹ç‚¹ä¸‹æ ‡ 
+	// ±£Áô³õÊ¼µãÏÂ±ê 
 	cin>>start_point;
 	for(int j=1;j<=L;j++) {
 		if(start_point.compare(locations[j])==0) {
@@ -249,6 +296,7 @@ void solve_one_file(string input_path, string output_path) {
 			}
 			else {
 				adj[i][j]=atof(temp.c_str());
+				testAdj[i][j]=1;
 			}
 		}
 	}
@@ -272,14 +320,11 @@ void solve_one_file(string input_path, string output_path) {
 	for(int i=1;i<=L;i++)
 		adj[i][i]=0;
 	
-
-
 	for(int k=1;k<=L;k++)
 	for(int i=1;i<=L;i++)
 	for(int j=1;j<=L;j++) {
 		if(adj[i][k]!=-1 && adj[k][j]!=-1) {
-			if(adj[i][j]==-1 || adj[i][j]>adj[i][k]+adj[k][j])
-			{
+			if(adj[i][j]==-1 || adj[i][j]>adj[i][k]+adj[k][j]) {
 				adj[i][j]=adj[i][k]+adj[k][j];
 				mid[i][j]=k;
 			}
@@ -320,34 +365,58 @@ void solve_one_file(string input_path, string output_path) {
 //		cout<<endl;
 	}
 	
+	my_ans_temp.clear();
+	for(int temp=0;temp<17;temp++)
+	{
+		my_ans.clear();
+
+		first_generate();
 	
-	first_generate();
+		solve();	
+		if(temp==0)
+		{	
+			for(auto e:my_ans)
+			{
+				my_ans_temp.push_back(e); 
+			}
+		}
+		else if(get_length(my_ans_temp)>get_length(my_ans))
+		{
+			my_ans_temp.clear();	
+			for(auto e:my_ans)
+			{
+				my_ans_temp.push_back(e); 
+			}
+		}
+	}
+	
+	my_ans.clear();	
+	for(auto e:my_ans_temp)
+	{
+		my_ans.push_back(e); 
+	}
+	
+	
 //	for(size_t i=0;i<my_ans.size();i++)
 //		printf("%d ",my_ans[i]);
 //	printf("\n");
 	
-	solve();	
-//	for(size_t i=0;i<my_ans.size();i++)
-//		printf("%d ",my_ans[i]);
-//	printf("\n");
-//		
 	my_ans=to_full(my_ans);
+//	verify(my_ans);
 	
 	#ifdef _DEBUG 	
 		for(size_t i=0;i<my_ans.size();i++)
 			printf("%d ",my_ans[i]);
-		printf("\n");
-		
-		to_name(my_ans);
-		
+		printf("\n");		
+		to_name(my_ans);		
 	#endif
 	
 	#ifdef _DEBUG_LENGTH_PRINT
 		cout<<"1:"<<get_length(my_ans)<<endl;
 	#endif 
 	
-	for(int i=1;i<=L;i++) {
-		if(belong_to[i]>0)
+	
+	for(int i=1;i<=H;i++) {
 		drop_off_location[i]=i;
 	}
 	
@@ -404,73 +473,34 @@ void solve_one_file(string input_path, string output_path) {
 			}	
 		}
 	}
-	
+	 
+	my_ans=to_full(my_ans);
+//	verify(my_ans);
+		
 	to_name(my_ans);
 	
-	for(int i=1;i<=L;i++) {
-		if(belong_to[i]>0) {
-			int drop_temp = -1;
-			double best_drop = 0.0;
-//			drop_off_location[i];
-			for(size_t j=0;j<my_ans.size();j++) {
-				if(drop_temp==-1 || adj[i][my_ans[j]]<best_drop) {
-					drop_temp = my_ans[j];
-					best_drop = adj[i][my_ans[j]];
-				}
+	for(int i=1;i<=H;i++) {
+		int drop_temp = -1;
+		double best_drop = 0.0;
+		
+		for(size_t j=0;j<my_ans.size();j++) {
+			if(drop_temp==-1 || adj[index[i]][my_ans[j]]<best_drop) {
+				drop_temp = my_ans[j];
+				best_drop = adj[index[i]][my_ans[j]];
 			}
-			drop_off_location[i]=drop_temp;
 		}
+		drop_off_location[i]=drop_temp;
+		
 	}
 	
 	show_drop_off(drop_off_location);
-
-	fclose(in_file);
-	fclose(out_file);
-
 	#ifdef _DEBUG_LENGTH_PRINT 	
 		cout<<"2:"<<get_length(my_ans)<<endl;
-	#endif	
-
+	#endif
+	
+	
+	return 0;	
 }
-
-
-void initialize() {
-	circle.clear();
-	my_ans.clear();
-	res = 0;
-	start_point.clear();
-	temp.clear();
-	for (size_t i = 0; i < maxl; i++) {
-		locations[i].clear();
-		homes[i].clear();
-		index[i] = 0;
-		belong_to[i] = 0;
-		drop_off_location[i] = 0;
-		for (size_t j = 0; j < maxl; j++) {
-			adj[i][j] = 0;
-			mid[i][j] = 0;
-			path[i][j].clear();
-		}
-	}
-}
-
-int main() {
-	std::string path = "../../inputs";
-	size_t cnt = 1;
-	for (const auto& entry : fs::directory_iterator(path)) {
-		initialize();
-		string input_path = entry.path().string();
-		string output_path = input_path;
-		size_t index = output_path.find("inputs", 0);
-		output_path.replace(index, 6, "outputs");
-		index = output_path.find("in", 0);
-		output_path.replace(index, 3, "out");
-		solve_one_file(input_path, output_path);
-	}
-	return 0;
-}
-
-
 
 /*
 7
@@ -486,3 +516,4 @@ x x x 1 x x x
 x x x 1 x x x
 1 x x 1 x x x
 */
+

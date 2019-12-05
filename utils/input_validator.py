@@ -35,9 +35,9 @@ def tests(input_file, params=[]):
     file_basename = os.path.basename(input_file)
 
     # check name constraints
-    if file_basename not in VALID_FILENAMES:
-        message += f'Your file is named {file_basename}. The allowed file names are: {RANGE_OF_INPUT_SIZES}.\n'
-        error = True
+    # if file_basename not in VALID_FILENAMES:
+    #     message += f'Your file is named {file_basename}. The allowed file names are: {RANGE_OF_INPUT_SIZES}.\n'
+    #     error = True
 
     for i in range(len(RANGE_OF_INPUT_SIZES)):
         if file_basename == VALID_FILENAMES[i] and (int(num_of_locations) > RANGE_OF_INPUT_SIZES[i]):
@@ -128,9 +128,11 @@ if __name__ == '__main__':
     parser.add_argument('input', type=str, help='The path to the input file or directory')
     parser.add_argument('params', nargs=argparse.REMAINDER, help='Extra arguments passed in')
     args = parser.parse_args()
-    if args.all:
-        input_directory = args.input
-        validate_all_inputs(input_directory, params=args.params)
-    else:
-        input_file = args.input
-        validate_input(input_file, params=args.params)
+    with open('../check.in','w') as f:
+        sys.stdout = f
+        if args.all:
+            input_directory = args.input
+            validate_all_inputs(input_directory, params=args.params)
+        else:
+            input_file = args.input
+            validate_input(input_file, params=args.params)

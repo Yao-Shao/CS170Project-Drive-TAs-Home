@@ -1,8 +1,8 @@
-Soda MemorialStadium Foothill Soda Gilman Jacobs Stern Observatory McCone GreekTheatre Soda Moses Campbell HearstMiningCircle Wheeler Bechtel EdwardsStadium Morgan Soda ClarkKerr Bechtel NorthGate Simon VLSB McLaughlin Blackwell MLK LifeSciences HearstFieldAnnex Hertz SproulPlaza Etcheverry Koshland LeConte Cory Stanley BarkerHall DoeLibrary Haste HaasPavilion Senior Bechtel KrutchTheater Insectary Giannini Pitzer Dwinelle Boalt Soda
-43
-Soda Hildebrand
+Soda Boalt Senior HearstMiningCircle Etcheverry Moses Bechtel Stern Cheit EdwardsStadium Haste Koshland Soda Hertz Campbell Pitzer HaasPavilion ClarkKerr LeConte DoeLibrary GreekTheatre McCone Blackwell Soda MemorialStadium Morgan BarkerHall Cory McLaughlin Foothill HearstFieldAnnex Hildebrand Gilman VLSB Stanley Jacobs Simon Giannini NorthGate SproulPlaza Wheeler MLK Observatory Insectary KrutchTheater LifeSciences Bowles Dwinelle Soda
+45
 Bechtel Bechtel
 Boalt Boalt
+Cheit Cheit
 Cory Cory
 Dwinelle Dwinelle
 Etcheverry Etcheverry
@@ -14,6 +14,7 @@ LifeSciences LifeSciences
 McLaughlin McLaughlin
 Jacobs Jacobs
 KrutchTheater KrutchTheater
+Hildebrand Hildebrand
 MLK MLK
 Moses Moses
 Observatory Observatory
@@ -25,6 +26,7 @@ Wheeler Wheeler
 BarkerHall BarkerHall
 Blackwell Blackwell
 Campbell Campbell
+Bowles Bowles
 ClarkKerr ClarkKerr
 DoeLibrary DoeLibrary
 EdwardsStadium EdwardsStadium
@@ -37,7 +39,7 @@ Insectary Insectary
 Koshland Koshland
 LeConte LeConte
 McCone McCone
-MemorialStadium Cheit Bowles MemorialStadium
+MemorialStadium MemorialStadium
 Morgan Morgan
 NorthGate NorthGate
 Pitzer Pitzer

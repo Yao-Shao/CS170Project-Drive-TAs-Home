@@ -7,7 +7,8 @@ import argparse
 import utils
 from student_utils import *
 import input_validator
-
+import tqdm
+import os
 
 def validate_output(input_file, output_file, params=[]):
     print('Processing', input_file)
@@ -25,21 +26,28 @@ def validate_output(input_file, output_file, params=[]):
     return input_error, cost, message
 
 
-def validate_all_outputs(input_directory, output_directory, params=[]):
+def validate_all_outputs(input_directory, output_directory, cost_dir, params=[]):
     input_files = utils.get_files_with_extension(input_directory, '.in')
     output_files = utils.get_files_with_extension(output_directory, '.out')
+    if os.path.isfile(cost_dir):
+        print('ERROR: ' + cost_dir + 'already exist!')
+        return
 
+    check_file = open(cost_dir, 'w')
     all_results = []
-    for input_file in input_files:
+    for input_file in tqdm.tqdm(input_files):
         output_file = utils.input_to_output(input_file, output_directory)
         print(input_file, output_file)
         if output_file not in output_files:
             print(f'No corresponding .out file for {input_file}')
             results = (None, None, f'No corresponding .out file for {input_file}')
         else:
-            results = validate_output(input_file, output_file, params=params)
+            input_error, cost, results = validate_output(input_file, output_file, params=params)
+            name = input_file.split('/')[-1]
+            check_file.write(name + ':' + str(cost) + '\n')
 
         all_results.append((input_file, results))
+    check_file.close()
     return all_results
 
 
@@ -62,10 +70,10 @@ def tests(input_data, output_data, params=[]):
     for i in range(num_dropoffs):
         dropoff = output_data[i + 2]
         if dropoff[0] not in list_of_locations:
-            message += 'At least one dropoff location is not an actual location.\n'
+            message += 'dropoff location {} is not an actual location.\n'.format(dropoff[0])
             cost = 'infinite'
         if dropoff[0] not in car_cycle:
-            message += 'At least one dropoff location is not in the path of the car.\n'
+            message += 'dropoff location {} is not in the path of the car.\n'.format(dropoff[0])
             cost = 'infinite'
         dropoff_index = list_of_locations.index(dropoff[0])
         if list_of_locations.index(dropoff[0]) in dropoffs.keys():
@@ -114,11 +122,15 @@ if __name__ == '__main__':
     parser.add_argument('--all', action='store_true', help='If specified, the output validator is run on all files in the output directory. Else, it is run on just the given output file')
     parser.add_argument('input', type=str, help='The path to the input file or directory')
     parser.add_argument('output', type=str, help='The path to the output file or directory')
+    parser.add_argument('cost', type=str, help='the path to the output file cost log')
     parser.add_argument('params', nargs=argparse.REMAINDER, help='Extra arguments passed in')
     args = parser.parse_args()
-    if args.all:
-        input_directory, output_directory = args.input, args.output
-        validate_all_outputs(input_directory, output_directory, params=args.params)
-    else:
-        input_file, output_file = args.input, args.output
-        validate_output(input_file, output_file, params=args.params)
+    with open('../check.out','w') as f:
+        sys.stdout = f
+        if args.all:
+            input_directory, output_directory = args.input, args.output
+            cost_dir = args.cost
+            validate_all_outputs(input_directory, output_directory, cost_dir, params=args.params)
+        else:
+            input_file, output_file = args.input, args.output
+            validate_output(input_file, output_file, params=args.params)

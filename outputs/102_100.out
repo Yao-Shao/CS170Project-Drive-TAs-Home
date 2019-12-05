@@ -1,5 +1,5 @@
-FacultyClub Durham EarthLibrary FPF Birge MaxwellField Hilgard BioscienceLibrary Etcheverry NewspapersLibrary LawrenceofScience EnergyBuilding BrainImagingCenter CITRIS SpringerGateway DonnerLaboratory Morrison Stephens Investigative Cheit Wheeler EarthquakeLibrary UniversityHouse SproulPlaza OBrien MediaCenter ArtHistoryLibrary BancroftDance Mulford Warren SutardjaDai StudentUnion AnthropologyLibrary Sproul StowPlaza Manville Unit3 InternationalHouse Spieker Koshland MelvinLaboratory AndersenAuditorium OptometryLibrary Library MartinezCommons IRLE FacultyClub
-45
+FacultyClub Investigative MartinezCommons UniversityHouse SproulPlaza EarthLibrary OBrien Koshland MelvinLaboratory MediaCenter MLK CITRIS SpringerGateway DonnerLaboratory AnthropologyLibrary Sproul StowPlaza CareerCenter Morrison Stephens AndersenAuditorium Library OptometryLibrary FPF Birge MaxwellField Hilgard BioscienceLibrary Etcheverry BrainImagingCenter Bechtel LawrenceofScience NewspapersLibrary EnergyBuilding McCone InternationalHouse HearstGym Unit3 Manville Mulford ArtHistoryLibrary Spieker StudentUnion SutardjaDai IRLE Cheit Wheeler EarthquakeLibrary Warren Durham FacultyClub
+46
 FacultyClub FacultyClub
 BioscienceLibrary BioscienceLibrary
 SutardjaDai SutardjaDai
@@ -11,6 +11,8 @@ EarthquakeLibrary EarthquakeLibrary
 UniversityHouse UniversityHouse
 LawrenceofScience LawrenceofScience
 Mulford Mulford
+CareerCenter CareerCenter
+HearstGym HearstGym
 Durham Durham
 OBrien OBrien
 Library Library
@@ -26,12 +28,11 @@ Investigative Investigative
 EarthLibrary EarthLibrary
 EnergyBuilding EnergyBuilding
 MediaCenter MediaCenter
-StowPlaza CareerCenter StowPlaza
+StowPlaza StowPlaza
 MartinezCommons MartinezCommons
 MelvinLaboratory MelvinLaboratory
-BancroftDance BancroftDance
 AndersenAuditorium AndersenAuditorium
-Unit3 Pimentel HearstGym Jacobs Unit3
+Unit3 Pimentel Jacobs Unit3
 AnthropologyLibrary AnthropologyLibrary
 Stephens Stephens
 InternationalHouse InternationalHouse
@@ -43,5 +44,5 @@ ArtHistoryLibrary ArtHistoryLibrary
 Sproul Sproul
 Birge Birge
 CITRIS CITRIS
-NewspapersLibrary NewspapersLibrary
+NewspapersLibrary BancroftDance NewspapersLibrary
 Warren PacificFilmArchive Warren
