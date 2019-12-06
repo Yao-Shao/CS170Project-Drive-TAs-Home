@@ -366,7 +366,7 @@ int main(int argc , char *argv[]) {
 	}
 	
 	my_ans_temp.clear();
-	for(int temp=0;temp<17;temp++)
+	for(int temp=0;temp<1;temp++)
 	{
 		my_ans.clear();
 
