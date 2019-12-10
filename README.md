@@ -51,30 +51,28 @@ In case that you have any problem running `auto.py`, we also provide an alternat
    ```shell
    python first_generate.py ../inputs ../outputs_best
    ```
-2. create a folder named `outputs_new` in the root directory. Then in the `alg` folder, run `project_call.exe`
+3. create a folder named `outputs_new` in the root directory. Then in the `alg` folder, run `project_call.exe`
 
-3. In terminal, change the working directory to `utils` 
+4. In terminal, change the working directory to `utils` 
 
   ```shell
   cd <path to the utils folder>
   ```
-  
-4. Calculate the cost
+5. Calculate the cost
 
    ```shell
    python cost.py ../inputs ../outputs_new ../cost_new.log
    ```
-
-5. Update the outputs
+6. Update the outputs
 
    ```shell
    python find_best_partial.py ../outputs_new ../cost_new.log
    ```
 
-6. Compress the outputs
+7. Compress the outputs
 
    ```shell
    python compress_output.py ../outputs_best/
-pip3 install requirments.txt
+   pip3 install requirments.txt
    python3 output_validator.py --all <path to input folder> <path to output folder>
    ```
