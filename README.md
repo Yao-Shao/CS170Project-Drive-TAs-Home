@@ -17,14 +17,14 @@
 
 1. Before running, please install the dependencies by
 
-   ```
+   ```shell
    cd <path to the utils folder>
    pip3 install -r requirements.txt 
    ```
 
 2. in terminal
 
-   ```
+   ```shell
    python first_generate.py ../inputs ../outputs_best
    ```
 
@@ -42,13 +42,13 @@ In case that you have any problem running `auto.py`, we also provide an alternat
 
 1. Before running, please install the dependencies by
 
-   ```
+   ```shell
    cd <path to the utils folder>
-pip3 install -r requirements.txt
+	pip3 install -r requirements.txt
    ```
 2. in terminal
 
-   ```
+   ```shell
    python first_generate.py ../inputs ../outputs_best
    ```
 2. create a folder named `outputs_new` in the root directory. Then in the `alg` folder, run `project_call.exe`
@@ -61,19 +61,19 @@ pip3 install -r requirements.txt
   
 4. Calculate the cost
 
-   ```
+   ```shell
    python cost.py ../inputs ../outputs_new ../cost_new.log
    ```
 
 5. Update the outputs
 
-   ```
+   ```shell
    python find_best_partial.py ../outputs_new ../cost_new.log
    ```
 
 6. Compress the outputs
 
-   ```
+   ```shell
    python compress_output.py ../outputs_best/
 pip3 install requirments.txt
    python3 output_validator.py --all <path to input folder> <path to output folder>
