@@ -46,23 +46,27 @@ In case that you have any problem running `auto.py`, we also provide an alternat
    cd <path to the utils folder>
 	pip3 install -r requirements.txt
    ```
+   
 2. in terminal
 
    ```shell
    python first_generate.py ../inputs ../outputs_best
    ```
+   
 3. create a folder named `outputs_new` in the root directory. Then in the `alg` folder, run `project_call.exe`
 
 4. In terminal, change the working directory to `utils` 
 
-  ```shell
-  cd <path to the utils folder>
-  ```
+   ```
+   cd <path to the utils folder>
+   ```
+
 5. Calculate the cost
 
    ```shell
    python cost.py ../inputs ../outputs_new ../cost_new.log
    ```
+
 6. Update the outputs
 
    ```shell
