@@ -8,7 +8,7 @@ using namespace std;
 
 int main()
 {
-	for(int index1=151;index1<=151;index1++) {
+	for(int index1=1;index1<=366;index1++) {
 		for(int index2=50;index2<=200;index2*=2) {
 			char c[8]; 
 			sprintf(c, "%d", index1); 
@@ -28,7 +28,7 @@ int main()
 			
 			string s;
 			s1 = "../inputs/" + s1;
-			s2 = "./" + s2;
+			s2 = "../outputs_new/" + s2;
 			s = "project.exe " + s1 + " " + s2;
 			cout<<s.c_str()<<endl;
 			system(s.c_str());

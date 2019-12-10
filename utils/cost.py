@@ -24,9 +24,9 @@ def validate_output(input_file, output_file, params=[]):
 def validate_all_outputs(input_directory, output_directory, check_dir, params=[]):
     input_files = utils.get_files_with_extension(input_directory, '.in')
     output_files = utils.get_files_with_extension(output_directory, '.out')
-    if os.path.isfile(check_dir):
-        print('ERROR: ' + check_dir + 'already exist!')
-        return
+    # if os.path.isfile(check_dir):
+    #     print('ERROR: ' + check_dir + ' already exist!')
+    #     return
 
     check_file = open(check_dir, 'w')
 
@@ -38,7 +38,7 @@ def validate_all_outputs(input_directory, output_directory, check_dir, params=[]
         else:
             cost = validate_output(input_file, output_file, params=params)
             name = input_file.split('/')[-1]
-            check_file.write(name + ':' + str(cost) + '\n')
+            check_file.write(name.replace('in', 'out') + ':' + str(cost) + '\n')
     check_file.close()
 
 def tests(input_data, output_data, params=[]):
