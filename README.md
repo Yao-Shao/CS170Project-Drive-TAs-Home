@@ -78,6 +78,4 @@ In case that you have any problem running `auto.py`, we also provide an alternat
 
    ```shell
    python compress_output.py ../outputs_best/
-   pip3 install requirments.txt
-   python3 output_validator.py --all <path to input folder> <path to output folder>
    ```
