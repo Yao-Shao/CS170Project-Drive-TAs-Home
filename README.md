@@ -2,7 +2,7 @@
 
 > Author: Yao Shao, Zhiyi Li, Huben Liu
 >
-> Contact:  yshao@gmail.com
+> Contact:  yshao998@gmail.com
 
 ## Reminder
 
@@ -12,7 +12,7 @@
 - We use `python 3.7.4` and `stdc++11`, please make sure that your version is at least this. You may need to use `python3` instead of `python` in the terminal if you have installed multiple versions of python.
 - We have write a automatic script in python which will generate the output in `.json` format. The result will be in the `utils`  folder. 
 - Since we use a randomized algorithm, you may not get the exactly same answer as our submission. To get an output with similar quality, please repeate calling `auto.py` for about 15 times with approximately 30 hours in total.
-- If you have any problems, please contact us by  yshao@gmail.com.
+- If you have any problems, please contact us by  yshao998@gmail.com.
 
 ## Usage: A simple way
 
