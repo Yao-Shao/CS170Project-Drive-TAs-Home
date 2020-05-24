@@ -6,7 +6,7 @@
 
 ## Reminder
 
-- Please see the [spec](https://github.com/Yao-Shao/CS170Project-Drive-TAs-Home/blob/master/Doc/spec.pdf) and [Report](https://github.com/Yao-Shao/CS170Project-Drive-TAs-Home/blob/master/Doc/Final_Report.pdf).
+- Please see the [Problem Spec](https://github.com/Yao-Shao/CS170Project-Drive-TAs-Home/blob/master/Doc/spec.pdf) and [Report](https://github.com/Yao-Shao/CS170Project-Drive-TAs-Home/blob/master/Doc/Final_Report.pdf) for details.
 - Please run on Windows since we only test it on Win10 and can't promise it works correctly on other OS.
 - Don't change the names of the folders and files unless you know exactly what will happen.
 - We use `python 3.7.4` and `stdc++11`, please make sure that your version is at least this. You may need to use `python3` instead of `python` in the terminal if you have installed multiple versions of python.
